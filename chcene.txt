@@ -357,7 +357,7 @@ fake
 rep
 gng
 drill
-Drillwar
+war
 ukraine
 palestine
 israel
