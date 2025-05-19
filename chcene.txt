@@ -175,7 +175,6 @@ Rice
 Rest
 Fragrance
 Mouse
-Glasses
 Monitor
 Chocolate
 Chip
@@ -221,7 +220,6 @@ Insane
 Immune
 Immunity
 What
-hitier
 Japan
 World
 USA
@@ -575,7 +573,6 @@ Groan
 Grunt
 Guard
 Guess
-Gush
 Guts
 Grit
 Growl
@@ -641,7 +638,6 @@ Mine
 Moan
 Moss
 Moth
-Muggy
 Murmur
 Muse
 Mute
@@ -661,10 +657,8 @@ Oxide
 Ooze
 Pact
 Pant
-Parch
 Patch
 Peel
-Perch
 Pest
 Phase
 Phantom
@@ -680,7 +674,6 @@ Pledge
 Plug
 Plume
 Plush
-Poise
 Poke
 Poll
 Pond
@@ -696,7 +689,6 @@ Pray
 Prey
 Pride
 Prism
-Prowl
 Puff
 Punk
 Purge
@@ -720,7 +712,6 @@ Reap
 Rebel
 Reef
 Relic
-Remit
 Rend
 Rent
 Rift
@@ -737,7 +728,6 @@ Root
 Rope
 Rough
 Round
-Rove
 Ruin
 Rule
 Run
@@ -746,13 +736,11 @@ Sage
 Sail
 Salt
 Sap
-Sass
 Scam
 Scan
 Scent
 Scope
 Scorn
-Scrap
 Screen
 Screw
 Script
@@ -823,7 +811,6 @@ Slice
 Slide
 Slip
 Slit
-Slog
 Sly
 Smile
 Smog
@@ -836,10 +823,8 @@ Snare
 Snarl
 Sneak
 Sneeze
-Snide
 Snip
 Snob
-Snook
 Snore
 Snub
 Snuff
@@ -883,7 +868,6 @@ Spray
 Spread
 Spring
 Sprout
-Spun
 Spur
 Squad
 Squash
@@ -913,7 +897,6 @@ Strip
 Strive
 Stroke
 Struck
-Strum
 Stub
 Stuck
 Study
@@ -937,7 +920,6 @@ Sure
 Surf
 Surge
 Swab
-Swam
 Swap
 Swarm
 Swat
@@ -953,7 +935,6 @@ Swirl
 Switch
 Sword
 Sworn
-Swum
 Sync
 Syrup
 Tab
@@ -998,7 +979,6 @@ Though
 Threat
 Three
 Threw
-Throb
 Throw
 Thumb
 Thump
@@ -1268,11 +1248,8 @@ Hut
 Ice
 Icon
 Idea
-If
 Ill
 Ink
-Is
-It
 Item
 Jab
 Jam
@@ -1338,7 +1315,6 @@ Man
 Map
 Mars
 Mask
-Mass
 Match
 Mat
 May
@@ -1357,7 +1333,6 @@ Miss
 Mix
 Mob
 Mock
-Mod
 Mode
 Mole
 Mom
@@ -1367,7 +1342,6 @@ Most
 Move
 Mud
 Mug
-My
 Name
 Nap
 Near
@@ -1379,7 +1353,6 @@ New
 Next
 Nice
 Nick
-No
 Nod
 None
 Nor
@@ -1397,13 +1370,11 @@ Offer
 Office
 Oil
 Old
-On
 Once
 One
 Only
 Open
 Opt
-Or
 Orb
 Order
 Ore
@@ -1552,14 +1523,12 @@ The
 Their
 Theory
 There
-These
 Third
 This
 Those
 Thought
 Thread
 Through
-To
 Together
 Tomorrow
 Too
@@ -1568,9 +1537,7 @@ Travel
 Ugly
 Unit
 Until
-Up
 Upon
-Us
 Use
 Used
 User
@@ -1595,7 +1562,6 @@ Wash
 Waste
 Water
 Way
-We
 Weak
 Wealth
 Wear
@@ -1822,7 +1788,6 @@ Peaceful
 Radiant
 Talent
 Victory
-Xplore
 Yield
 Zest
 abandon
@@ -1885,10 +1850,8 @@ arrive
 art
 article
 artist
-as
 ask
 assume
-at
 attack
 attention
 attorney
@@ -1906,7 +1869,6 @@ ball
 bank
 bar
 base
-be
 beat
 beautiful
 because
@@ -1945,7 +1907,6 @@ building
 business
 but
 buy
-by
 call
 camera
 campaign
@@ -2043,8 +2004,6 @@ design
 despite
 detail
 determine
-develop
-development
 die
 difference
 different
@@ -2056,7 +2015,6 @@ discover
 discuss
 discussion
 disease
-do
 doctor
 dog
 door
@@ -2171,7 +2129,6 @@ get
 girl
 give
 glass
-go
 goal
 good
 government
@@ -2192,7 +2149,6 @@ happen
 happy
 hard
 have
-he
 head
 health
 hear
@@ -2223,16 +2179,13 @@ huge
 human
 hundred
 husband
-I
 idea
 identify
-if
 image
 imagine
 impact
 important
 improve
-in
 include
 including
 increase
@@ -2252,7 +2205,6 @@ into
 investment
 involve
 issue
-it
 item
 its
 itself
@@ -2323,7 +2275,6 @@ material
 matter
 may
 maybe
-me
 mean
 measure
 media
@@ -2343,8 +2294,6 @@ mind
 minute
 miss
 mission
-model
-modern
 moment
 money
 month
@@ -2356,12 +2305,10 @@ mouth
 move
 movement
 movie
-Mr
 Mrs
 much
 music
 must
-my
 myself
 name
 nation
@@ -2380,7 +2327,6 @@ newspaper
 next
 nice
 night
-no
 none
 nor
 north
@@ -2391,18 +2337,14 @@ notice
 now
 number
 occur
-of
 off
 offer
 office
 officer
 official
 often
-oh
 oil
-ok
 old
-on
 once
 one
 only
@@ -2411,7 +2353,6 @@ open
 operation
 opportunity
 option
-or
 organization
 other
 others
@@ -2428,7 +2369,6 @@ paper
 parent
 participant
 particular
-particularly
 partner
 party
 pass
@@ -2454,7 +2394,6 @@ plan
 plant
 play
 player
-PM
 point
 police
 policy
@@ -2577,7 +2516,6 @@ service
 set
 seven
 several
-sex
 sexual
 shake
 share
@@ -2607,7 +2545,6 @@ skill
 skin
 small
 smile
-so
 social
 society
 soldier
@@ -2706,7 +2643,6 @@ throughout
 throw
 thus
 time
-to
 today
 together
 tonight
@@ -2730,16 +2666,13 @@ true
 truth
 try
 turn
-TV
 two
 type
 under
 understand
 unit
 until
-up
 upon
-us
 use
 usually
 value
@@ -2759,7 +2692,6 @@ war
 watch
 water
 way
-we
 weapon
 wear
 week
@@ -2818,7 +2750,6 @@ aura
 avenue
 bamboo
 barren
-batter
 beacon
 belief
 breeze
@@ -2850,7 +2781,6 @@ defend
 dental
 deputy
 devote
-dimly
 dizzy
 domain
 donkey
@@ -2902,8 +2832,6 @@ gust
 habit
 hazel
 helium
-herbal
-hinge
 hollow
 honest
 honey
@@ -2917,7 +2845,6 @@ adopted
 adviser
 airport
 alchemy
-allege
 alpine
 amazed
 amber
@@ -2928,8 +2855,6 @@ anxiety
 appeal
 archer
 armory
-assert
-assign
 astral
 attach
 attend
@@ -2946,7 +2871,6 @@ barber
 barely
 barrel
 basket
-basted
 battle
 beauty
 befall
@@ -2977,7 +2901,6 @@ bubble
 buffer
 burden
 butler
-bypass
 caller
 canary
 candle
@@ -2987,8 +2910,6 @@ casino
 castle
 cattle
 caught
-cedars
-chewed
 chorus
 circle
 civic
@@ -3009,7 +2930,6 @@ critic
 crouch
 crunch
 crusty
-cruxes
 damage
 dancer
 danger
@@ -3028,7 +2948,6 @@ dialed
 digger
 direct
 divine
-donors
 doodle
 double
 doubt
@@ -3036,7 +2955,6 @@ dozens
 dreamy
 driven
 driver
-drumly
 drying
 duplex
 duties
@@ -3046,12 +2964,9 @@ earbud
 earthy
 easily
 eating
-echoed
 elapse
-elbows
 elder
 eleven
-embark
 empire
 empty
 enable
@@ -3060,7 +2975,6 @@ endure
 engage
 engine
 envoy
-epicly
 ethics
 evade
 evenly
@@ -3075,18 +2989,13 @@ fairly
 falcon
 fallen
 famous
-fanged
 farmer
 faster
 faulty
-fearer
 feeble
 feline
 fellow
-fenced
-fickle
 fierce
-fifths
 filter
 finale
 finder
@@ -3095,7 +3004,6 @@ fisher
 fizzle
 flavor
 fleece
-fleshy
 flicks
 flight
 flinch
@@ -3113,30 +3021,24 @@ fraud
 freeze
 french
 frozen
-fungal
 funnel
 gadget
 galaxy
 gamble
-geared
 gender
 genius
 gentle
 gently
 gesture
-getter
 ghosty
 giants
 gifted
-gilled
 ginger
-givers
 glance
 glassy
 gleams
 glider
 glitch
-gloomy
 gloves
 gnarly
 goblet
@@ -3149,15 +3051,11 @@ grains
 granny
 gravel
 grease
-greeted
-grinds
-gritty
 guests
 guitar
 guzzle
 haggle
 hammer
-hamper
 handle
 hangar
 harbor
@@ -3174,16 +3072,12 @@ hidden
 higher
 highly
 hinder
-hissed
 holder
 honors
 hooded
-hooked
-hooves
 hopeful
 hornet
 horror
-horses
 hostel
 hourly
 humble
@@ -3199,7 +3093,6 @@ ignore
 images
 immune
 import
-impose
 impure
 income
 injure
@@ -3222,7 +3115,6 @@ joyful
 jungle
 jurist
 justly
-keenly
 keeper
 kelvin
 kernel
@@ -3231,13 +3123,11 @@ kindly
 kitten
 knight
 knives
-knotty
 koalas
 labour
 lacked
 lading
 lagoon
-lambed
 lament
 lampy
 lander
@@ -3248,12 +3138,10 @@ latest
 laughs
 layout
 league
-learns
 leaves
 legacy
 legend
 length
-lesser
 lifted
 lights
 lilies
@@ -3277,7 +3165,6 @@ lyrics
 magnet
 maiden
 makeup
-mallet
 manner
 mantle
 marble
@@ -3315,7 +3202,6 @@ missed
 misty
 mobile
 mocked
-models
 modest
 modify
 module
@@ -3333,7 +3219,6 @@ muffle
 murder
 muscle
 museum
-muster
 mutant
 mutual
 mythic
@@ -3344,9 +3229,7 @@ nearby
 neater
 nectar
 needle
-negate
 nephew
-nested
 nether
 nibble
 nights
@@ -3365,7 +3248,6 @@ oceans
 oddity
 offend
 offset
-onsite
 opaque
 openly
 oppose
@@ -3374,9 +3256,7 @@ orange
 ordeal
 organs
 origin
-ornate
 outfit
-outing
 output
 outset
 overdo
@@ -3386,13 +3266,10 @@ packet
 palace
 palate
 palmer
-pander
 panels
-pantry
 papers
 parade
 parcel
-parlor
 parody
 parted
 pastel
@@ -3437,14 +3314,12 @@ poison
 polish
 ponder
 poodle
-poorly
 portal
 postal
 poster
 potato
 potion
 powder
-powers
 prairie
 praise
 prayer
