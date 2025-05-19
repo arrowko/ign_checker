@@ -366,8 +366,10 @@ save
 god
 globe
 Glow 
-nová
+nova
 ricen
+lega
+legacy
 rizz
 west
 swan
