@@ -1,3 +1,11 @@
+give
+violin
+play
+reload
+ammo
+gun
+gum
+sun
 page
 ghost
 kkk
