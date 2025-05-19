@@ -1,3 +1,7 @@
+fire
+ice
+fly
+air
 Arrow
 1fa
 Fan
