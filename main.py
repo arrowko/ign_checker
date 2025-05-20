@@ -57,7 +57,7 @@ def send_discord_notification(free_names, webhook_url, batch_number):
         print(f"Error sending Discord notification for batch {batch_number}: {e}")
 
 def main():
-    input_file = "chcene.txt"  # <--- Change this to your txt filename
+    input_file = "3letter.txt"  # <--- Change this to your txt filename
     all_usernames = read_usernames_from_file(input_file)
     webhook_url = os.getenv("DISCORD_WEBHOOK_URL")
 
