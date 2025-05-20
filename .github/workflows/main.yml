@@ -2,7 +2,7 @@ name: Daily Username Checker
 
 on:
   schedule:
-    - cron: '10 22 * * *'
+    - cron: '10 1 * * *'
   workflow_dispatch:       # Allows manual trigger
 
 jobs:
