@@ -3881,7 +3881,6 @@ abuse
 actor
 adapt
 adopt
-album
 alert
 alien
 alter
@@ -3898,7 +3897,6 @@ armed
 armor
 array
 aside
-asset
 audio
 audit
 award
@@ -3939,7 +3937,6 @@ cabin
 cable
 calmly
 camel
-canal
 candy
 cargo
 carve
@@ -3961,7 +3958,6 @@ clerk
 click
 cliff
 climb
-cling
 clone
 cloth
 cloud
@@ -4007,7 +4003,6 @@ drown
 drunk
 dryer
 earth
-easel
 elect
 elite
 enact
@@ -4062,7 +4057,6 @@ guest
 guide
 harsh
 haste
-haunt
 hedge
 hello
 hence
@@ -4113,8 +4107,6 @@ metal
 meter
 midst
 mixed
-model
-modem
 motor
 mount
 mouse
@@ -4132,7 +4124,6 @@ onion
 orbit
 organ
 ought
-outer
 paint
 panel
 panic
@@ -4207,7 +4198,6 @@ shame
 shape
 shark
 sheep
-sheer
 sheet
 shelf
 shell
@@ -4297,7 +4287,6 @@ tiger
 title
 toast
 token
-tonal
 topic
 tower
 track
@@ -4315,7 +4304,6 @@ twice
 uncle
 union
 unity
-urban
 urged
 usage
 usual
@@ -4325,7 +4313,6 @@ vapor
 vault
 vegan
 verse
-vicar
 video
 vigor
 vinyl
@@ -4345,7 +4332,6 @@ wheat
 wheel
 widow
 wield
-wilds
 willy
 windy
 wiser
@@ -4366,12 +4352,10 @@ zesty
 zoned
 abide
 acorn
-admin
 adobe
 adore
 aisle
 alloy
-aloft
 ample
 apron
 aroma
@@ -4379,7 +4363,6 @@ atlas
 aural
 avail
 bacon
-balmy
 banjo
 barge
 basil
@@ -4398,18 +4381,15 @@ brake
 breed
 brine
 brisk
-broil
 brook
 broom
 buddy
 bulky
 bunch
 bunny
-burly
 cache
 cacti
 cadet
-cagey
 canoe
 canon
 cedar
@@ -4421,7 +4401,6 @@ chimp
 chord
 chore
 chunk
-cinch
 clamp
 clasp
 cleat
@@ -4437,7 +4416,6 @@ creep
 crumb
 crust
 daisy
-datum
 delta
 demon
 dense
@@ -4463,7 +4441,6 @@ facet
 faint
 fairy
 fatal
-feral
 ferry
 fiend
 fifth
@@ -4483,7 +4460,6 @@ frill
 frisk
 frock
 froth
-fudge
 funky
 furry
 fussy
@@ -4497,13 +4473,12 @@ godly
 going
 grape
 graph
-grate
 grave
 graze
 greed
 grill
 grime
-grins
+grin
 groan
 gross
 grove
@@ -4512,7 +4487,6 @@ grown
 guilt
 gummy
 hairy
-halve
 hatch
 haven
 heath
@@ -4520,32 +4494,24 @@ hefty
 helix
 herbs
 hiker
-hilly
-hinge
-hoist
 hoops
 hound
 hover
 humid
 hunch
 husky
-idiom
-idler
 imbue
 impel
 infer
-inset
 intel
 intro
 irony
-jerky
 joker
 jolly
 joust
 juicy
 jumpy
 junta
-juror
 kayak
 keeps
 ketch
@@ -4556,7 +4522,6 @@ knack
 koala
 laced
 laden
-ladle
 lakes
 lambs
 lance
@@ -4569,7 +4534,6 @@ lease
 lemon
 lends
 lever
-libel
 liege
 liken
 limbo
@@ -4584,7 +4548,6 @@ lover
 lower
 lunge
 lurch
-lured
 lurid
 lurked
 lushy
@@ -4601,7 +4564,6 @@ maple
 marry
 marsh
 mason
-mealy
 meaty
 medic
 melee
@@ -4609,8 +4571,6 @@ micro
 mined
 minus
 mirth
-modal
-modest
 molar
 moody
 motel
@@ -4619,7 +4579,6 @@ mower
 mucky
 muddy
 mural
-mushy
 musty
 muted
 myths
@@ -4635,11 +4594,9 @@ noisy
 nomad
 noose
 notch
-nudge
 nutty
 nylon
 oasis
-obeyed
 omega
 onset
 optic
@@ -4649,17 +4606,13 @@ oxide
 ozone
 pagan
 pains
-paled
 palm
-parer
 parka
 parry
-parse
 peach
 pearl
 pecan
 penny
-perch
 petal
 piety
 pinch
@@ -4671,13 +4624,10 @@ pivot
 pixel
 pizza
 plaid
-plank
 plume
 plush
 poems
-poise
 polka
-pouch
 prick
 prism
 privy
@@ -4840,7 +4790,6 @@ COR
 COS
 COT
 COW
-COX
 COY
 COZ
 CRU
