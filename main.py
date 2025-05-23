@@ -61,7 +61,7 @@ def main():
     all_usernames = read_usernames_from_file(input_file)
     webhook_url = os.getenv("DISCORD_WEBHOOK_URL")
 
-    batch_size = 600
+    batch_size = 99
     total = len(all_usernames)
     all_free_names = []
 
@@ -78,7 +78,7 @@ def main():
         # If not the last batch, wait 2 minutes before next batch
         if start_idx + batch_size < total:
             print("Waiting 2 minutes before next batch to avoid hitting API rate limits...\n")
-            time.sleep(300)
+            time.sleep(60)
 
     print("\n=== All batches processed ===")
     print(f"Total free usernames found: {len(all_free_names)}")
