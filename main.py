@@ -59,7 +59,7 @@ def send_discord_notification(free_names, webhook_url, batch_number=None, final=
         print(f"Discord webhook error: {e}")
 
 def main():
-    input_file = "chcene.txt"
+    input_file = "99.txt"
     blacklist_file = "blacklist.txt"
 
     webhook_url = os.getenv("DISCORD_WEBHOOK_URL")
@@ -100,7 +100,7 @@ def main():
             send_discord_notification(batch_free, webhook_url, batch_number=batch_num)
             batch_num += 1
 
-            time.sleep(5)  # short wait between batches
+            time.sleep(60)  # short wait between batches
 
         # Send final notification after completing full pass
         if all_free_names_in_pass:
