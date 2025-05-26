@@ -71,6 +71,8 @@ bus
 option
 give
 testeer
+testeer1
+testeer2
 play
 reload
 ammo
@@ -95,5 +97,4 @@ advertising
 adviser
 pirate
 lazy
-ill
-illegal
+
