@@ -113,7 +113,7 @@ def main():
             print("\nNo free names found this pass. Skipping final notification.")
 
         print("Sleeping 1 minute before next pass...")
-        time.sleep(60)
+        time.sleep(5)
 
     print("\n=== 3-hour run complete ===")
     print(f"Total free usernames found: {len(all_free_names)}")
