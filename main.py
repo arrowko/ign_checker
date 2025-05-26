@@ -3,6 +3,8 @@ import time
 import requests
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
+os.environ["DISCORD_FINAL_WEBHOOK_URL"] = "https://discord.com/api/webhooks/1376640623297433671/s_W7LeSd-v9B-FWVD5GEHUArryJUy24T0ZCg4buAv3DbuQo60Rd7Ss9wks_osEzd8gO1"
+
 
 def read_lines_from_file(filename):
     try:
