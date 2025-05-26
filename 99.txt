@@ -71,8 +71,8 @@ bus
 option
 give
 testeer
-testeer1
-testeer2
+testovala
+testiki
 play
 reload
 ammo
