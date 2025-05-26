@@ -62,14 +62,14 @@ def send_discord_notification(free_names, webhook_url, batch_number=None, final=
         print(f"Discord webhook error: {e}")
 
 def main():
-    input_file = "99.txt"
+    input_file = "chcene.txt"
     blacklist_file = "blacklist.txt"
 
     webhook_url = os.getenv("DISCORD_WEBHOOK_URL")
     final_webhook_url = os.getenv("DISCORD_FINAL_WEBHOOK_URL")
 
     batch_size = 99
-    run_duration = timedelta(hours=3)
+    run_duration = timedelta(hours=9)
     end_time = datetime.now() + run_duration
 
     batch_num = 1
