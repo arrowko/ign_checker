@@ -75,7 +75,7 @@ def send_discord_notification(free_names, webhook_url, batch_number=None, final=
         print(f"❌ Error sending Discord notification: {e}")
 
 def main():
-    input_file = "chcene.txt"
+    input_file = "99.txt"
     blacklist_file = "blacklist.txt"
 
     all_usernames = read_usernames_from_file(input_file)
