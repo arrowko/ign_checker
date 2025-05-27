@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 os.environ["DISCORD_FINAL_WEBHOOK_URL"] = "https://discord.com/api/webhooks/1376640623297433671/s_W7LeSd-v9B-FWVD5GEHUArryJUy24T0ZCg4buAv3DbuQo60Rd7Ss9wks_osEzd8gO1"
+os.environ["DISCORD_WEBHOOK_URL"] = "https://discord.com/api/webhooks/1373286716504277002/3a8I20YEVadrZXGK_W3AcPB4v01d5walWIIySGwl6Xf-rdnpTm52XKNE3sr7HmfOY6OF"
 
 
 def read_usernames_from_file(filename):
@@ -62,7 +63,7 @@ def send_discord_notification(free_names, webhook_url, batch_number=None, final=
         print(f"Discord webhook error: {e}")
 
 def main():
-    input_file = "chcene.txt"
+    input_file = "99.txt"
     blacklist_file = "blacklist.txt"
 
     webhook_url = os.getenv("DISCORD_WEBHOOK_URL")
