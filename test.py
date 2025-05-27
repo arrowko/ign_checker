@@ -10,11 +10,11 @@ os.environ["DISCORD_WEBHOOK_URL"] = "https://discord.com/api/webhooks/1373286716
 
 # Define your list of proxies (replace with your actual proxies)
 proxies_list = [
-    "http://34.102.48.89:8080",
-    "http://200.174.198.86:8888",
-    "http://45.12.150.82:8080",
-    "http://47.236.224.32:8080",
-    "http://45.140.143.77:18080"
+    "https://34.102.48.89:8080",
+    "https://200.174.198.86:8888",
+    "https://45.12.150.82:8080",
+    "https://47.236.224.32:8080",
+    "https://45.140.143.77:18080"
 ]
 
 def get_random_proxy():
