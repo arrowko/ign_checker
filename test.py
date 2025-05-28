@@ -51,14 +51,14 @@ def send_discord_notification(free_names, webhook_url, batch_number):
         print(f"Error sending Discord notification for batch {batch_number}: {e}")
 
 def main():
-    input_file = "99.txt"  # Change as needed
+    input_file = "99.txt"
     all_usernames = read_usernames_from_file(input_file)
     webhook_url = os.getenv("DISCORD_WEBHOOK_URL")
 
     batch_size = 20
     total = len(all_usernames)
 
-    # Step 1: Check usernames in batches of 20, if 500 add all 20 to potential free list
+    request_count = 0  # Track total API requests made
     potential_free_names = []
 
     for batch_num, start_idx in enumerate(range(0, total, batch_size), start=1):
@@ -66,33 +66,42 @@ def main():
         print(f"Checking batch {batch_num} with {len(batch)} usernames: {batch}")
 
         batch_is_free = check_batch_usernames(batch)
+        request_count += 1
+
         if batch_is_free:
             print(f"Batch {batch_num} returned 500 - adding all {len(batch)} usernames to potential free list.")
             potential_free_names.extend(batch)
         else:
             print(f"Batch {batch_num} did not return 500.")
 
-        if start_idx + batch_size < total:
-            print("Waiting 1 minute before next batch to avoid rate limits...")
+        # Wait after every 99 requests
+        if request_count % 99 == 0:
+            print("✅ Reached 99 requests, waiting 1 minute to avoid rate limits...\n")
             time.sleep(60)
 
-    # Step 2: Check potential free names one by one to confirm
-    print("\nChecking potential free usernames individually...")
+    # Step 2: Verify each username individually
+    print("\n🔍 Verifying potential free usernames one by one...")
     confirmed_free_names = []
 
     for i, username in enumerate(potential_free_names, start=1):
         print(f"Checking username {i}/{len(potential_free_names)}: {username}", end='\r')
         if check_username_individually(username):
             confirmed_free_names.append(username)
+        request_count += 1
 
-    print("\n\n=== Summary ===")
-    print(f"Total potential free usernames found: {len(potential_free_names)}")
-    print(f"Total confirmed free usernames after individual check: {len(confirmed_free_names)}")
+        if request_count % 99 == 0:
+            print("✅ Reached 99 requests during individual checks, waiting 1 minute...\n")
+            time.sleep(60)
+
+    print("\n\n=== ✅ Summary ===")
+    print(f"🟨 Potential free usernames: {len(potential_free_names)}")
+    print(f"🟩 Confirmed free usernames: {len(confirmed_free_names)}")
 
     if confirmed_free_names:
         send_discord_notification(confirmed_free_names, webhook_url, "Final")
 
-    print("Done.")
+    print("🎉 Done.")
+
 
 if __name__ == "__main__":
     main()
