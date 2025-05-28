@@ -39,7 +39,7 @@ def check_usernames_concurrently(usernames, max_workers=10):
             username = future_to_username[future]
             progress = (i / total) * 100
             print(f"[{i}/{total}] ({progress:.2f}%) Checked: {username}", end='\r')
-            print(requests)
+            print(response1)
 
             result = future.result()
             if result:
