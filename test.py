@@ -13,6 +13,18 @@ def read_usernames_from_file(filename):
         usernames = [line.strip() for line in f if line.strip()]
     return usernames
 
+def check_single_username(username):
+    url = f"https://api-cops.criticalforce.fi/api/public/profile?usernames={username}"
+    try:
+        response = requests.get(url, timeout=5)
+        if response.status_code == 500:
+            return username  # Free
+        elif response.status_code == 200:
+            return None      # Taken
+    except requests.RequestException:
+        pass
+    return None
+
 def check_usernames_batch(usernames_batch):
     url = f"https://api-cops.criticalforce.fi/api/public/profile?usernames={','.join(usernames_batch)}"
     try:
@@ -21,10 +33,9 @@ def check_usernames_batch(usernames_batch):
             try:
                 taken_profiles = response.json()
             except ValueError:
-                print("Invalid JSON response.")
-                return []
+                print("Invalid JSON response. Falling back to individual checks.")
+                return [name for name in usernames_batch if check_single_username(name)]
 
-            # Debug print to inspect structure
             if isinstance(taken_profiles, list):
                 taken_names = {
                     profile.get("username") for profile in taken_profiles if isinstance(profile, dict) and "username" in profile
@@ -32,15 +43,17 @@ def check_usernames_batch(usernames_batch):
                 free_names = [name for name in usernames_batch if name not in taken_names]
                 return free_names
             else:
-                print("Unexpected JSON format:", taken_profiles)
-                return []
+                print("Unexpected JSON format. Falling back to individual checks.")
+                return [name for name in usernames_batch if check_single_username(name)]
+
         elif response.status_code == 500:
-            # If the entire batch fails
-            return usernames_batch
+            # API failure, but check each username individually
+            return [name for name in usernames_batch if check_single_username(name)]
+
     except requests.RequestException as e:
         print(f"Request error for batch: {','.join(usernames_batch)} -> {e}")
-    return []
 
+    return []
 
 def check_usernames_concurrently(usernames, max_workers=10):
     total = len(usernames)
