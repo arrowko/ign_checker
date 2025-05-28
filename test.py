@@ -13,65 +13,33 @@ def read_usernames_from_file(filename):
         usernames = [line.strip() for line in f if line.strip()]
     return usernames
 
-def check_single_username(username):
-    """Check a single username with the API (fallback mode)."""
-    url = f"https://api-cops.criticalforce.fi/api/public/profile?usernames={username}"
-    try:
-        response = requests.get(url, timeout=5)
-        if response.status_code == 500:
-            return username  # free
-    except requests.RequestException:
-        pass
-    return None  # taken or failed
-
 def check_usernames_batch(usernames_batch):
-    """Main function to check a batch of usernames using the batch API."""
     url = f"https://api-cops.criticalforce.fi/api/public/profile?usernames={','.join(usernames_batch)}"
     try:
         response = requests.get(url, timeout=10)
-
         if response.status_code == 200:
             try:
                 taken_profiles = response.json()
+            except ValueError:
+                print("Invalid JSON response.")
+                return []
 
-                # Sanity check
-                if not isinstance(taken_profiles, list):
-                    print("⚠️ JSON is not a list. Falling back.")
-                    return fallback_check(usernames_batch)
-
-                taken_usernames = {
-                    profile["username"] for profile in taken_profiles
-                    if isinstance(profile, dict) and "username" in profile
+            # Debug print to inspect structure
+            if isinstance(taken_profiles, list):
+                taken_names = {
+                    profile.get("username") for profile in taken_profiles if isinstance(profile, dict) and "username" in profile
                 }
-
-                # Names not in taken list are considered free
-                free_usernames = [name for name in usernames_batch if name not in taken_usernames]
-                return free_usernames
-
-            except Exception as e:
-                print(f"⚠️ JSON parsing failed: {e}. Falling back.")
-                return fallback_check(usernames_batch)
-
-        else:
-            print(f"⚠️ API returned {response.status_code}. Falling back.")
-            return fallback_check(usernames_batch)
-
+                free_names = [name for name in usernames_batch if name not in taken_names]
+                return free_names
+            else:
+                print("Unexpected JSON format:", taken_profiles)
+                return []
+        elif response.status_code == 500:
+            # If the entire batch fails
+            return usernames_batch
     except requests.RequestException as e:
-        print(f"⚠️ Request failed: {e}. Falling back.")
-        return fallback_check(usernames_batch)
-
-def fallback_check(usernames_batch):
-    """Fallback: check each username individually (threaded)."""
-    free_names = []
-    with ThreadPoolExecutor(max_workers=10) as executor:
-        futures = {executor.submit(check_single_username, name): name for name in usernames_batch}
-        for future in as_completed(futures):
-            result = future.result()
-            if result:
-                free_names.append(result)
-    return free_names
-
-
+        print(f"Request error for batch: {','.join(usernames_batch)} -> {e}")
+    return []
 
 def check_usernames_concurrently(usernames, max_workers=10):
     total = len(usernames)
@@ -95,7 +63,6 @@ def check_usernames_concurrently(usernames, max_workers=10):
 
     print()
     return free_names
-
 
 def send_discord_notification(free_names, webhook_url, batch_number):
     if not free_names or not webhook_url:
