@@ -1,97 +1,98 @@
 import os
 import time
 import requests
-from concurrent.futures import ThreadPoolExecutor, as_completed
 
-# Put your actual Discord webhook URL here
-os.environ["DISCORD_WEBHOOK_URL"] = "https://discord.com/api/webhooks/your_webhook_id/your_webhook_token"
+os.environ["DISCORD_FINAL_WEBHOOK_URL"] = "https://discord.com/api/webhooks/1376640623297433671/s_W7LeSd-v9B-FWVD5GEHUArryJUy24T0ZCg4buAv3DbuQo60Rd7Ss9wks_osEzd8gO1"
+os.environ["DISCORD_WEBHOOK_URL"] = "https://discord.com/api/webhooks/1373286716504277002/3a8I20YEVadrZXGK_W3AcPB4v01d5walWIIySGwl6Xf-rdnpTm52XKNE3sr7HmfOY6OF"
 
 def read_usernames_from_file(filename):
     with open(filename, "r", encoding="utf-8") as f:
         return [line.strip() for line in f if line.strip()]
 
-def check_batch(usernames_batch):
-    url = f"https://api-cops.criticalforce.fi/api/public/profile?usernames={','.join(usernames_batch)}"
+def check_batch_usernames(usernames_batch):
+    # Join usernames comma-separated for API call
+    joined_names = ",".join(usernames_batch)
+    url = f"https://api-cops.criticalforce.fi/api/public/profile?usernames={joined_names}"
     try:
         response = requests.get(url, timeout=10)
-        if response.status_code == 200:
-            taken_profiles = response.json()
-            taken = {p["username"].lower() for p in taken_profiles if isinstance(p, dict) and "username" in p}
-            free = [name for name in usernames_batch if name.lower() not in taken]
-            return free
-        elif response.status_code == 500:
-            return None
-    except requests.RequestException as e:
-        print(f"Request error: {e}")
-    return []
+        if response.status_code == 500:
+            # All usernames in batch are free
+            return True
+        else:
+            return False
+    except requests.RequestException:
+        return False
 
-def recheck_individual(usernames):
-    free = []
-    for name in usernames:
-        url = f"https://api-cops.criticalforce.fi/api/public/profile?usernames={name}"
-        try:
-            response = requests.get(url, timeout=5)
-            if response.status_code == 200:
-                data = response.json()
-                if not any(p.get("username", "").lower() == name.lower() for p in data):
-                    free.append(name)
-            elif response.status_code == 500:
-                print(f"Still failed for: {name}")
-        except requests.RequestException as e:
-            print(f"Error on single recheck for {name}: {e}")
-    return free
+def check_username_individually(username):
+    url = f"https://api-cops.criticalforce.fi/api/public/profile?usernames={username}"
+    try:
+        response = requests.get(url, timeout=5)
+        if response.status_code == 500:
+            return True
+        else:
+            return False
+    except requests.RequestException:
+        return False
 
-def send_discord_notification(free_names, batch_number):
-    webhook_url = os.getenv("DISCORD_WEBHOOK_URL")
+def send_discord_notification(free_names, webhook_url, batch_number):
     if not free_names or not webhook_url:
         return
 
-    message = f"**🚨 Free Usernames Found (Batch {batch_number})!**\n" + "\n".join(f"- {name}" for name in free_names)
+    message = f"**🚨 @everyone Free Usernames Found (Batch {batch_number})!**\n" + "\n".join(f"- `{name}`" for name in free_names)
     payload = {"content": message}
 
     try:
         response = requests.post(webhook_url, json=payload)
         if response.status_code == 204:
-            print(f"Notification sent for batch {batch_number}.")
+            print(f"Discord notification for batch {batch_number} sent successfully.")
         else:
-            print(f"Failed to notify for batch {batch_number}. HTTP {response.status_code}")
+            print(f"Failed to send Discord notification for batch {batch_number}: HTTP {response.status_code}")
     except requests.RequestException as e:
-        print(f"Error sending notification: {e}")
+        print(f"Error sending Discord notification for batch {batch_number}: {e}")
 
 def main():
-    input_file = "99.txt"  # Change to your file
+    input_file = "99.txt"  # Change as needed
     all_usernames = read_usernames_from_file(input_file)
+    webhook_url = os.getenv("DISCORD_WEBHOOK_URL")
+
     batch_size = 20
     total = len(all_usernames)
 
-    failed_batches = []
-    all_free = []
+    # Step 1: Check usernames in batches of 20, if 500 add all 20 to potential free list
+    potential_free_names = []
 
-    for i in range(0, total, batch_size):
-        batch_num = (i // batch_size) + 1
-        batch = all_usernames[i:i + batch_size]
-        print(f"Checking batch {batch_num}: {batch}")
+    for batch_num, start_idx in enumerate(range(0, total, batch_size), start=1):
+        batch = all_usernames[start_idx:start_idx + batch_size]
+        print(f"Checking batch {batch_num} with {len(batch)} usernames: {batch}")
 
-        free_names = check_batch(batch)
-        if free_names is None:
-            # API error, retry individually later
-            failed_batches.extend(batch)
-        elif free_names:
-            all_free.extend(free_names)
-            send_discord_notification(free_names, batch_num)
+        batch_is_free = check_batch_usernames(batch)
+        if batch_is_free:
+            print(f"Batch {batch_num} returned 500 - adding all {len(batch)} usernames to potential free list.")
+            potential_free_names.extend(batch)
+        else:
+            print(f"Batch {batch_num} did not return 500.")
 
-        time.sleep(1)  # Avoid rate limits
+        if start_idx + batch_size < total:
+            print("Waiting 1 minute before next batch to avoid rate limits...")
+            time.sleep(60)
 
-    if failed_batches:
-        print("\nRechecking failed usernames individually...")
-        individually_free = recheck_individual(failed_batches)
-        if individually_free:
-            all_free.extend(individually_free)
-            send_discord_notification(individually_free, "Individual Retry")
+    # Step 2: Check potential free names one by one to confirm
+    print("\nChecking potential free usernames individually...")
+    confirmed_free_names = []
 
-    print("\n✅ Done. Total free usernames:", len(all_free))
-    for name in all_free:
-        print(f"- {name}")
+    for i, username in enumerate(potential_free_names, start=1):
+        print(f"Checking username {i}/{len(potential_free_names)}: {username}", end='\r')
+        if check_username_individually(username):
+            confirmed_free_names.append(username)
+
+    print("\n\n=== Summary ===")
+    print(f"Total potential free usernames found: {len(potential_free_names)}")
+    print(f"Total confirmed free usernames after individual check: {len(confirmed_free_names)}")
+
+    if confirmed_free_names:
+        send_discord_notification(confirmed_free_names, webhook_url, "Final")
+
+    print("Done.")
 
 if __name__ == "__main__":
     main()
