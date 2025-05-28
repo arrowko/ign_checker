@@ -102,7 +102,7 @@ def divide_and_conquer(usernames, request_counter, max_workers=10):
     return threaded_check(midlevel), request_counter
 
 def main():
-    input_file = "99.txt"
+    input_file = "chcene.txt"
     all_usernames = read_usernames_from_file(input_file)
     webhook_url = os.getenv("DISCORD_WEBHOOK_URL")
 
