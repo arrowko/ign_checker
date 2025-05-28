@@ -14,7 +14,7 @@ def check_batch_usernames(usernames_batch):
     joined_names = ",".join(usernames_batch)
     url = f"https://api-cops.criticalforce.fi/api/public/profile?usernames={joined_names}"
     try:
-        response = requests.get(url, timeout=10)
+        response = requests.get(url, timeout=5)
         if response.status_code == 500:
             # All usernames in batch are free
             return True
