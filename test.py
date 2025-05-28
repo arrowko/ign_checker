@@ -32,7 +32,7 @@ def send_discord_notification(free_names, webhook_url, batch_number):
     if not free_names or not webhook_url:
         return
 
-    message = f"**🚨 @everyone Free Usernames Found (Batch {batch_number})!**\n" + "\n".join(f"- `{name}`" for name in free_names)
+    message = f"**🚨 @everyone Free Usernames Found (Batch {batch_number})!**\n" + "\n".join(f"- {name}" for name in free_names)
     payload = {"content": message}
 
     try:
@@ -77,30 +77,21 @@ def divide_and_conquer(usernames, request_counter, max_workers=10):
                 time.sleep(60)
             return []
 
-def threaded_check(usernames):
-    nonlocal request_counter
-    confirmed = []
-
-    with ThreadPoolExecutor(max_workers=max_workers) as executor:
-        futures = {executor.submit(check_username_individually, u): u for u in usernames}
-
-        for future in as_completed(futures):
-            username = futures[future]
-            result = future.result()
-            request_counter += 1
-
-            if result:
-                print(f"📡 Request #{request_counter} - ✅ Free: {username}")
-                confirmed.append(username)
-            else:
-                print(f"📡 Request #{request_counter} - ❌ Taken: {username}")
-
-            if request_counter % 99 == 0:
-                print("⏱️ Reached 99 requests, waiting 1 minute...")
-                time.sleep(60)
-
-    return confirmed
-
+    def threaded_check(usernames):
+        nonlocal request_counter
+        confirmed = []
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            futures = {executor.submit(check_username_individually, u): u for u in usernames}
+            for i, future in enumerate(as_completed(futures), start=1):
+                result = future.result()
+                request_counter += 1
+                print(f"📡 Request #{request_counter} - Checked: {futures[future]}")
+                if request_counter % 99 == 0:
+                    print("⏱️ Reached 99 requests, waiting 1 minute...")
+                    time.sleep(60)
+                if result:
+                    confirmed.append(result)
+        return confirmed
 
     # Start recursive filtering first, then threaded final checks
     midlevel = recursive_check(usernames)
