@@ -77,7 +77,7 @@ def divide_and_conquer(usernames, request_counter, max_workers=10):
                 time.sleep(60)
             return []
 
-   def threaded_check(usernames):
+def threaded_check(usernames):
     nonlocal request_counter
     confirmed = []
 
@@ -100,6 +100,7 @@ def divide_and_conquer(usernames, request_counter, max_workers=10):
                 time.sleep(60)
 
     return confirmed
+
 
     # Start recursive filtering first, then threaded final checks
     midlevel = recursive_check(usernames)
