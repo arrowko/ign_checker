@@ -18,16 +18,29 @@ def check_usernames_batch(usernames_batch):
     try:
         response = requests.get(url, timeout=10)
         if response.status_code == 200:
-            taken_profiles = response.json()
-            taken_names = {profile["username"] for profile in taken_profiles}
-            free_names = [name for name in usernames_batch if name not in taken_names]
-            return free_names
+            try:
+                taken_profiles = response.json()
+            except ValueError:
+                print("Invalid JSON response.")
+                return []
+
+            # Debug print to inspect structure
+            if isinstance(taken_profiles, list):
+                taken_names = {
+                    profile.get("username") for profile in taken_profiles if isinstance(profile, dict) and "username" in profile
+                }
+                free_names = [name for name in usernames_batch if name not in taken_names]
+                return free_names
+            else:
+                print("Unexpected JSON format:", taken_profiles)
+                return []
         elif response.status_code == 500:
-            # If entire batch fails, assume all free (use with caution)
+            # If the entire batch fails
             return usernames_batch
-    except requests.RequestException:
-        pass
+    except requests.RequestException as e:
+        print(f"Request error for batch: {','.join(usernames_batch)} -> {e}")
     return []
+
 
 def check_usernames_concurrently(usernames, max_workers=10):
     total = len(usernames)
