@@ -18,12 +18,10 @@ def check_single_username(username):
     try:
         response = requests.get(url, timeout=5)
         if response.status_code == 500:
-            return username  # Free
-        elif response.status_code == 200:
-            return None      # Taken
+            return username  # free
     except requests.RequestException:
         pass
-    return None
+    return None  # taken or error
 
 def check_usernames_batch(usernames_batch):
     url = f"https://api-cops.criticalforce.fi/api/public/profile?usernames={','.join(usernames_batch)}"
@@ -33,27 +31,39 @@ def check_usernames_batch(usernames_batch):
             try:
                 taken_profiles = response.json()
             except ValueError:
-                print("Invalid JSON response. Falling back to individual checks.")
-                return [name for name in usernames_batch if check_single_username(name)]
+                print("⚠️ Invalid JSON. Falling back to single checks.")
+                return fallback_check(usernames_batch)
 
             if isinstance(taken_profiles, list):
                 taken_names = {
                     profile.get("username") for profile in taken_profiles if isinstance(profile, dict) and "username" in profile
                 }
-                free_names = [name for name in usernames_batch if name not in taken_names]
-                return free_names
+                return [name for name in usernames_batch if name not in taken_names]
             else:
-                print("Unexpected JSON format. Falling back to individual checks.")
-                return [name for name in usernames_batch if check_single_username(name)]
+                print("⚠️ Unexpected format. Falling back to single checks.")
+                return fallback_check(usernames_batch)
 
         elif response.status_code == 500:
-            # API failure, but check each username individually
-            return [name for name in usernames_batch if check_single_username(name)]
+            print("⚠️ Batch API 500. Falling back to single checks.")
+            return fallback_check(usernames_batch)
 
     except requests.RequestException as e:
-        print(f"Request error for batch: {','.join(usernames_batch)} -> {e}")
+        print(f"⚠️ Request error for batch {usernames_batch}: {e}")
+        return fallback_check(usernames_batch)
 
     return []
+
+def fallback_check(usernames_batch):
+    # Retry each name individually using multithreading
+    free_names = []
+    with ThreadPoolExecutor(max_workers=10) as executor:
+        future_to_name = {executor.submit(check_single_username, name): name for name in usernames_batch}
+        for future in as_completed(future_to_name):
+            result = future.result()
+            if result:
+                free_names.append(result)
+    return free_names
+
 
 def check_usernames_concurrently(usernames, max_workers=10):
     total = len(usernames)
