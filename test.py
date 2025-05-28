@@ -13,40 +13,45 @@ def read_usernames_from_file(filename):
         usernames = [line.strip() for line in f if line.strip()]
     return usernames
 
-def check_username(username):
-    global response1
-    url = f"https://api-cops.criticalforce.fi/api/public/profile?usernames={username}"
+def check_usernames_batch(usernames_batch):
+    url = f"https://api-cops.criticalforce.fi/api/public/profile?usernames={','.join(usernames_batch)}"
     try:
-        response = requests.get(url, timeout=5)
-        response1 = response
-        if response.status_code == 500:
-            return username  # Free name found
+        response = requests.get(url, timeout=10)
+        if response.status_code == 200:
+            taken_profiles = response.json()
+            taken_names = {profile["username"] for profile in taken_profiles}
+            free_names = [name for name in usernames_batch if name not in taken_names]
+            return free_names
+        elif response.status_code == 500:
+            # If entire batch fails, assume all free (use with caution)
+            return usernames_batch
     except requests.RequestException:
         pass
-    return None
+    return []
 
 def check_usernames_concurrently(usernames, max_workers=10):
-    
     total = len(usernames)
     free_names = []
+    print(f"Checking {total} usernames with {max_workers} threads (in batches of 20)...\n")
 
-    print(f"Checking {total} usernames with {max_workers} threads...\n")
+    # Split usernames into batches of 20
+    batches = [usernames[i:i + 20] for i in range(0, len(usernames), 20)]
 
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
-        future_to_username = {executor.submit(check_username, name): name for name in usernames}
+        future_to_batch = {executor.submit(check_usernames_batch, batch): batch for batch in batches}
 
-        for i, future in enumerate(as_completed(future_to_username), start=1):
-            username = future_to_username[future]
-            progress = (i / total) * 100
-            print(f"[{i}/{total}] ({progress:.2f}%) Checked: {username}", end='\r')
-            print(response1)
+        for i, future in enumerate(as_completed(future_to_batch), start=1):
+            batch = future_to_batch[future]
+            progress = (i / len(batches)) * 100
+            print(f"[{i}/{len(batches)}] ({progress:.2f}%) Checked batch: {', '.join(batch)}", end='\r')
 
             result = future.result()
             if result:
-                free_names.append(result)
+                free_names.extend(result)
 
     print()
     return free_names
+
 
 def send_discord_notification(free_names, webhook_url, batch_number):
     if not free_names or not webhook_url:
