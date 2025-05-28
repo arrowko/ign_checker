@@ -45,8 +45,6 @@ def send_discord_notification(free_names, webhook_url, batch_number):
         print(f"❌ Error sending Discord notification: {e}")
 
 def divide_and_conquer(usernames, request_counter, max_workers=10):
-    confirmed_free = []
-
     def recursive_check(name_list):
         nonlocal request_counter
         if not name_list:
@@ -58,7 +56,7 @@ def divide_and_conquer(usernames, request_counter, max_workers=10):
             print(f"📡 Request #{request_counter}")
             if request_counter % 99 == 0:
                 print("⏱️ Reached 99 requests, waiting 1 minute...")
-                time.sleep(60)
+                time.sleep(65)
             return [result] if result else []
 
         if check_batch_usernames(name_list):
@@ -66,7 +64,7 @@ def divide_and_conquer(usernames, request_counter, max_workers=10):
             print(f"📡 Request #{request_counter}")
             if request_counter % 99 == 0:
                 print("⏱️ Reached 99 requests, waiting 1 minute...")
-                time.sleep(60)
+                time.sleep(65)
             mid = len(name_list) // 2
             return recursive_check(name_list[:mid]) + recursive_check(name_list[mid:])
         else:
@@ -74,7 +72,7 @@ def divide_and_conquer(usernames, request_counter, max_workers=10):
             print(f"📡 Request #{request_counter}")
             if request_counter % 99 == 0:
                 print("⏱️ Reached 99 requests, waiting 1 minute...")
-                time.sleep(60)
+                time.sleep(65)
             return []
 
     def threaded_check(usernames):
@@ -96,7 +94,7 @@ def divide_and_conquer(usernames, request_counter, max_workers=10):
 
                 if request_counter % 99 == 0:
                     print("⏱️ Reached 99 requests, waiting 1 minute...")
-                    time.sleep(60)
+                    time.sleep(65)
 
         return confirmed
 
@@ -128,9 +126,14 @@ def main():
 
         if request_counter % 99 == 0:
             print("⏱️ Reached 99 requests, waiting 1 minute...\n")
-            time.sleep(60)
+            time.sleep(65)
 
-    print("\n🔁 Verifying potential free usernames using divide and conquer + 10 threads...")
+    # Add delay and reset request counter before final checking
+    print("\n🕒 Waiting 60 seconds before starting final checks to reset request window...")
+    time.sleep(65)
+    request_counter = 0
+    print("✅ Delay complete. Starting divide and conquer with fresh request count...\n")
+
     confirmed_free_names, request_counter = divide_and_conquer(potential_free_names, request_counter)
 
     print("\n=== ✅ Summary ===")
