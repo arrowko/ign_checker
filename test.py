@@ -16,14 +16,17 @@ def check_batch_usernames(usernames_batch):
     url = f"https://api-cops.criticalforce.fi/api/public/profile?usernames={joined_names}"
     try:
         response = requests.get(url, timeout=5)
+        print(f"🌐 Batch response ({len(usernames_batch)} usernames): {response.status_code}")
         return response.status_code == 500
-    except requests.RequestException:
+    except requests.RequestException as e:
+        print(f"❌ Batch request error: {e}")
         return False
 
 def check_username_individually(username):
     url = f"https://api-cops.criticalforce.fi/api/public/profile?usernames={username}"
     try:
         response = requests.get(url, timeout=5)
+        print(f"🔍 Checking {username} -> Status: {response.status_code}")
         return username if response.status_code == 500 else None
     except requests.RequestException:
         return None
@@ -109,15 +112,18 @@ def main():
     batch_size = 20
     total = len(all_usernames)
     request_counter = 0
-    potential_free_names = []
+    confirmed_free_names = []
 
     for batch_num, start_idx in enumerate(range(0, total, batch_size), start=1):
         batch = all_usernames[start_idx:start_idx + batch_size]
         print(f"\n🔍 Checking batch {batch_num} with {len(batch)} usernames: {batch}")
 
         if check_batch_usernames(batch):
-            print(f"✅ Batch {batch_num} returned 500 - adding all usernames to potential free list.")
-            potential_free_names.extend(batch)
+            print(f"✅ Batch {batch_num} returned 500 - running divide and conquer for batch.")
+            confirmed, request_counter = divide_and_conquer(batch, request_counter)
+            if confirmed:
+                confirmed_free_names.extend(confirmed)
+                send_discord_notification(confirmed, webhook_url, batch_num)
         else:
             print(f"❌ Batch {batch_num} did not return 500.")
 
@@ -128,22 +134,9 @@ def main():
             print("⏱️ Reached 99 requests, waiting 1 minute...\n")
             time.sleep(60)
 
-    # Add delay and reset request counter before final checking
-    print("\n🕒 Waiting 60 seconds before starting final checks to reset request window...")
-    time.sleep(60)
-    request_counter = 0
-    print("✅ Delay complete. Starting divide and conquer with fresh request count...\n")
-
-    confirmed_free_names, request_counter = divide_and_conquer(potential_free_names, request_counter)
-
     print("\n=== ✅ Summary ===")
-    print(f"🟨 Potential free usernames: {len(potential_free_names)}")
     print(f"🟩 Confirmed free usernames: {len(confirmed_free_names)}")
     print(f"📝 Confirmed list: {confirmed_free_names}")
-
-    if confirmed_free_names:
-        send_discord_notification(confirmed_free_names, webhook_url, "Final")
-
     print("🎉 Done.")
 
 if __name__ == "__main__":
