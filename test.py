@@ -3,7 +3,7 @@ import time
 import requests
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-# Replace this with your actual Discord webhook URL
+# Put your actual Discord webhook URL here
 os.environ["DISCORD_WEBHOOK_URL"] = "https://discord.com/api/webhooks/your_webhook_id/your_webhook_token"
 
 def read_usernames_from_file(filename):
@@ -15,12 +15,11 @@ def check_batch(usernames_batch):
     try:
         response = requests.get(url, timeout=10)
         if response.status_code == 200:
-            found_profiles = response.json()
-            taken = {p["username"].lower() for p in found_profiles if isinstance(p, dict) and "username" in p}
-            # Return names not found (free usernames)
-            return [name for name in usernames_batch if name.lower() not in taken]
+            taken_profiles = response.json()
+            taken = {p["username"].lower() for p in taken_profiles if isinstance(p, dict) and "username" in p}
+            free = [name for name in usernames_batch if name.lower() not in taken]
+            return free
         elif response.status_code == 500:
-            # Server error, mark for retry individually
             return None
     except requests.RequestException as e:
         print(f"Request error: {e}")
@@ -60,7 +59,7 @@ def send_discord_notification(free_names, batch_number):
         print(f"Error sending notification: {e}")
 
 def main():
-    input_file = "99.txt"  # Change to your file name
+    input_file = "99.txt"  # Change to your file
     all_usernames = read_usernames_from_file(input_file)
     batch_size = 20
     total = len(all_usernames)
@@ -73,20 +72,18 @@ def main():
         batch = all_usernames[i:i + batch_size]
         print(f"Checking batch {batch_num}: {batch}")
 
-        result = check_batch(batch)
-        if result is None:
-            # API 500 error, retry individually later
+        free_names = check_batch(batch)
+        if free_names is None:
+            # API error, retry individually later
             failed_batches.extend(batch)
-        elif result:
-            all_free.extend(result)
-            send_discord_notification(result, batch_num)
+        elif free_names:
+            all_free.extend(free_names)
+            send_discord_notification(free_names, batch_num)
 
-        # Small delay between batches to avoid rate limits
-        time.sleep(1)
+        time.sleep(1)  # Avoid rate limits
 
-    # Recheck failed usernames individually
     if failed_batches:
-        print("\nRechecking failed batches individually...")
+        print("\nRechecking failed usernames individually...")
         individually_free = recheck_individual(failed_batches)
         if individually_free:
             all_free.extend(individually_free)
