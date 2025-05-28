@@ -77,21 +77,29 @@ def divide_and_conquer(usernames, request_counter, max_workers=10):
                 time.sleep(60)
             return []
 
-    def threaded_check(usernames):
-        nonlocal request_counter
-        confirmed = []
-        with ThreadPoolExecutor(max_workers=max_workers) as executor:
-            futures = {executor.submit(check_username_individually, u): u for u in usernames}
-            for i, future in enumerate(as_completed(futures), start=1):
-                result = future.result()
-                request_counter += 1
-                print(f"📡 Request #{request_counter} - Checked: {futures[future]}")
-                if request_counter % 99 == 0:
-                    print("⏱️ Reached 99 requests, waiting 1 minute...")
-                    time.sleep(60)
-                if result:
-                    confirmed.append(result)
-        return confirmed
+   def threaded_check(usernames):
+    nonlocal request_counter
+    confirmed = []
+
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        futures = {executor.submit(check_username_individually, u): u for u in usernames}
+
+        for future in as_completed(futures):
+            username = futures[future]
+            result = future.result()
+            request_counter += 1
+
+            if result:
+                print(f"📡 Request #{request_counter} - ✅ Free: {username}")
+                confirmed.append(username)
+            else:
+                print(f"📡 Request #{request_counter} - ❌ Taken: {username}")
+
+            if request_counter % 99 == 0:
+                print("⏱️ Reached 99 requests, waiting 1 minute...")
+                time.sleep(60)
+
+    return confirmed
 
     # Start recursive filtering first, then threaded final checks
     midlevel = recursive_check(usernames)
