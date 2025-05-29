@@ -614,7 +614,7 @@ Look
 Adject
 Camo
 Rust
-testerino
+Cramp
 Insane
 Immune
 What
@@ -916,7 +916,7 @@ Curl
 Curse
 Cycle
 Dare
-testerino
+Dart
 Daze
 Deed
 Deny
@@ -2247,7 +2247,7 @@ believe
 benefit
 best
 between
-testerino
+beyond
 big
 bill
 billion
@@ -2828,7 +2828,7 @@ spend
 sport
 spring
 stage
-testerino
+standard
 start
 statement
 station
@@ -3747,7 +3747,7 @@ titled
 toasty
 tomato
 topics
-testerino
+topped
 torque
 towers
 toxic
@@ -5329,7 +5329,7 @@ SOM
 SON
 SOP
 SOS
-testerino
+SOT
 SOU
 SOW
 SOX
@@ -5524,4 +5524,3 @@ ZIT
 ZOA
 ZOO
 ZUZ
-testerino
