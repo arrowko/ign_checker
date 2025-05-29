@@ -52,8 +52,8 @@ def divide_and_conquer(usernames, request_data, max_workers=10):
     def increment_and_check():
         with lock:
             request_data["count"] += 1
-            if request_data["count"] % 98 == 0:
-                print("⏱️ Reached 98 requests, waiting 1 minute...")
+            if request_data["count"] % 95 == 0:
+                print("⏱️ Reached 95 requests, waiting 1 minute...")
                 time.sleep(60)
             print(f"📡 Request #{request_data['count']}")
 
@@ -97,8 +97,8 @@ def process_batch(batch_num, batch, confirmed_free_names, webhook_url, request_d
     if check_batch_usernames(batch):
         with lock:
             request_data["count"] += 1
-            if request_data["count"] % 98 == 0:
-                print("⏱️ Reached 98 requests, waiting 1 minute...")
+            if request_data["count"] % 95 == 0:
+                print("⏱️ Reached 95 requests, waiting 1 minute...")
                 time.sleep(60)
             print(f"📡 Request #{request_data['count']}")
         print(f"✅ Batch {batch_num} returned 500 - running divide and conquer for batch.")
@@ -110,8 +110,8 @@ def process_batch(batch_num, batch, confirmed_free_names, webhook_url, request_d
     else:
         with lock:
             request_data["count"] += 1
-            if request_data["count"] % 98 == 0:
-                print("⏱️ Reached 98 requests, waiting 1 minute...")
+            if request_data["count"] % 95 == 0:
+                print("⏱️ Reached 95 requests, waiting 1 minute...")
                 time.sleep(60)
             print(f"📡 Request #{request_data['count']}")
         print(f"❌ Batch {batch_num} did not return 500.")
