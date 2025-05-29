@@ -99,7 +99,6 @@ ill
 illegal
 absent
 meth
-method
 surge
 soap
 shower
@@ -109,7 +108,6 @@ star
 stand
 staff
 violent
-violate
 danger
 dangerous
 dark
@@ -188,7 +186,6 @@ coconut
 cosmic
 space
 speech
-leech
 emotion
 support
 sup
@@ -204,7 +201,6 @@ bible
 jesus
 jeans
 think
-instead
 cart
 mario
 dead
@@ -213,12 +209,9 @@ flag
 care
 xxx
 mein kampf
-difficult
-difficulty
 distance
 bright
 moth
-polite
 pilot
 1st
 broken
@@ -570,7 +563,6 @@ City
 Fang
 Past
 Future
-Dandelion
 Lion
 Elephant
 Cringe
@@ -886,7 +878,6 @@ Tomb
 Myth
 Crust
 Glare
-Stain
 Steam
 Brisk
 Ridge
@@ -914,7 +905,6 @@ Chase
 Choke
 Clash
 Clasp
-Cling
 Cloak
 Clout
 Club
@@ -946,7 +936,6 @@ Edge
 Elbow
 Emit
 Feast
-Fetch
 Fierce
 Flint
 Flood
@@ -1046,7 +1035,6 @@ Nibble
 Noble
 Noir
 Noise
-Nudge
 Numb
 Oath
 Obey
@@ -1065,7 +1053,6 @@ Ping
 Pint
 Pivot
 Plague
-Plank
 Play
 Plea
 Pledge
@@ -1174,7 +1161,6 @@ Shop
 Short
 Shout
 Show
-Shrug
 Shun
 Shut
 Sick
@@ -1353,7 +1339,6 @@ Tear
 Tech
 Teen
 Tell
-Temp
 Tend
 Tense
 Tent
@@ -1785,7 +1770,6 @@ Par
 Park
 Part
 Pat
-Pay
 Pea
 Peak
 Pen
@@ -1858,7 +1842,6 @@ Ring
 Road
 Rose
 Rub
-Sad
 Safe
 Same
 Save
@@ -1911,7 +1894,6 @@ System
 Table
 Target
 Tax
-Temperature
 Ten
 The
 Their
@@ -2219,7 +2201,6 @@ alone
 along
 already
 also
-although
 always
 American
 among
@@ -2245,7 +2226,6 @@ artist
 assume
 attack
 attention
-attorney
 audience
 author
 authority
@@ -2359,15 +2339,12 @@ customer
 cut
 data
 daughter
-debate
 decade
 decide
 decision
 deep
 defense
 degree
-Democrat
-democratic
 describe
 design
 despite
@@ -2379,8 +2356,6 @@ dinner
 direction
 director
 discover
-discuss
-discussion
 disease
 doctor
 dog
@@ -2404,7 +2379,6 @@ effect
 effort
 eight
 either
-election
 else
 employee
 energy
@@ -2412,8 +2386,6 @@ enjoy
 enough
 enter
 entire
-environment
-environmental
 especially
 establish
 even
@@ -2545,11 +2517,9 @@ individual
 industry
 information
 inside
-institution
 interest
 interesting
 international
-interview
 into
 investment
 involve
@@ -2620,7 +2590,6 @@ measure
 media
 medical
 meet
-meeting
 member
 memory
 mention
@@ -2650,8 +2619,6 @@ nation
 national
 natural
 nature
-near
-nearly
 necessary
 need
 network
@@ -2696,7 +2663,6 @@ own
 owner
 paper
 parent
-participant
 particular
 partner
 party
@@ -2704,7 +2670,6 @@ pass
 past
 patient
 pattern
-pay
 peace
 people
 per
@@ -2763,7 +2728,6 @@ quite
 radio
 range
 rate
-rather
 reach
 read
 ready
@@ -2828,7 +2792,6 @@ seven
 several
 sexual
 share
-she
 shoot
 short
 shot
@@ -3065,7 +3028,6 @@ dizzy
 domain
 donkey
 dozen
-drawer
 duvet
 echoes
 elbow
@@ -3080,9 +3042,7 @@ fable
 fancy
 feast
 fence
-fetch
 fiber
-fillet
 flamey
 flick
 flint
@@ -3095,7 +3055,6 @@ foster
 freckle
 freely
 frosty
-fumble
 fuzzy
 gather
 genie
@@ -3136,17 +3095,14 @@ armory
 astral
 attach
 attend
-attic
 avenge
 axiom
 babble
 backed
 badger
-ballet
 banner
 barber
 barely
-barrel
 battle
 beauty
 befall
@@ -3162,12 +3118,10 @@ blazer
 blight
 blouse
 blurry
-boiler
 bother
 bounty
 branch
 brandy
-braver
 bribed
 bridge
 bronze
@@ -3199,7 +3153,6 @@ copper
 coral
 credit
 creepy
-crisis
 critic
 crouch
 crunch
@@ -3233,9 +3186,7 @@ duplex
 duties
 eager
 eagle
-earbud
 earthy
-easily
 eating
 elapse
 elder
@@ -3253,7 +3204,6 @@ evade
 evenly
 exceed
 except
-exhale
 extend
 facing
 fading
@@ -3277,17 +3227,12 @@ fisher
 fizzle
 flavor
 fleece
-flicks
-flight
-flinch
-floods
 flower
 fluent
 fluffy
 folder
 forced
 forest
-format
 fought
 fowler
 fraud
@@ -3303,15 +3248,10 @@ genius
 gentle
 gently
 gesture
-ghosty
-giants
 gifted
 ginger
 glance
-gleams
-glider
 glitch
-gloves
 gnarly
 goblet
 golden
@@ -3329,7 +3269,6 @@ guzzle
 haggle
 hammer
 handle
-hangar
 harbor
 hardly
 harmed
@@ -3364,7 +3303,6 @@ ignite
 ignore
 images
 import
-impure
 income
 injure
 insert
@@ -3411,7 +3349,6 @@ lifted
 lights
 lilies
 limit
-linked
 liquid
 lively
 locate
@@ -3458,7 +3395,6 @@ miners
 mining
 minor
 misfit
-misled
 missed
 mobile
 mocked
@@ -3482,8 +3418,6 @@ mythic
 namely
 napkin
 native
-nearby
-neater
 nectar
 needle
 nephew
@@ -3492,7 +3426,6 @@ nibble
 nights
 nimble
 nobody
-noises
 normal
 notion
 novels
@@ -3507,13 +3440,11 @@ opaque
 oppose
 oracle
 orange
-ordeal
 organs
 origin
 outfit
 output
 outset
-overdo
 oxygen
 packed
 packet
@@ -3529,11 +3460,9 @@ patchy
 patent
 patrol
 patron
-payout
 peanut
 pebble
 peeked
-pellet
 penalty
 pencil
 pepper
@@ -3588,13 +3517,11 @@ pursue
 puzzle
 quartz
 quench
-quests
 quiver
 rabbit
 racing
 radius
 raffle
-raided
 rained
 raised
 ranger
@@ -3602,7 +3529,6 @@ ranked
 rapidly
 rarely
 ration
-ravens
 reader
 realms
 rebels
@@ -3615,7 +3541,6 @@ refuse
 regain
 regret
 reject
-remark
 remedy
 remote
 repair
@@ -3634,13 +3559,8 @@ rhythm
 ribbon
 riches
 riddle
-rifles
-rights
 rising
 ritual
-rivals
-roared
-robbed
 rocket
 rodent
 rolled
@@ -3656,7 +3576,6 @@ rudder
 ruined
 runner
 sacred
-saddle
 safari
 safely
 safety
@@ -3694,15 +3613,12 @@ shapes
 shards
 shared
 shaved
-sheets
-shelve
 shield
 shines
 shiver
 shores
 shorts
 shovel
-shrink
 sickle
 signal
 signed
@@ -3725,8 +3641,6 @@ snacks
 snakes
 snatch
 sniped
-snobby
-snorts
 soaked
 soccer
 socket
@@ -3795,17 +3709,14 @@ survey
 sweats
 sweepy
 switch
-swords
 symbol
 syntax
 tablet
 tackle
 tagged
-tailor
 taking
 talent
 talked
-taller
 taming
 tamper
 tangle
@@ -3814,8 +3725,6 @@ tarmac
 tasted
 tattoo
 taught
-tavern
-teapot
 tedium
 temple
 tennis
@@ -3898,7 +3807,6 @@ arise
 armed
 armor
 array
-aside
 audio
 audit
 award
@@ -4003,7 +3911,6 @@ drift
 drink
 drown
 drunk
-dryer
 earth
 elect
 elite
@@ -4061,7 +3968,6 @@ harsh
 haste
 hedge
 hello
-hence
 hobby
 honor
 horse
@@ -4106,7 +4012,6 @@ meant
 medal
 merit
 metal
-meter
 midst
 mixed
 motor
@@ -4115,7 +4020,6 @@ mouse
 naked
 nasty
 naval
-needy
 nerve
 noble
 noise
@@ -4207,7 +4111,6 @@ shift
 shine
 shirt
 shock
-shore
 shout
 shove
 sight
@@ -4274,7 +4177,6 @@ sword
 taken
 tales
 talks
-tally
 taste
 tears
 teens
@@ -4316,7 +4218,6 @@ vault
 vegan
 verse
 video
-vigor
 vinyl
 viola
 virus
@@ -4360,7 +4261,6 @@ aisle
 alloy
 ample
 apron
-aroma
 atlas
 aural
 avail
@@ -4384,7 +4284,6 @@ breed
 brine
 brisk
 brook
-broom
 buddy
 bulky
 bunch
@@ -4401,7 +4300,6 @@ chewy
 chime
 chimp
 chord
-chore
 chunk
 clamp
 clasp
@@ -4466,7 +4364,6 @@ funky
 furry
 fussy
 gauge
-glade
 gland
 glare
 gloom
@@ -4802,7 +4699,6 @@ CUE
 CUP
 CUR
 CUT
-CWM
 DAB
 DAD
 DAG
@@ -4968,7 +4864,6 @@ GIG
 GIN
 GIP
 GIT
-GNU
 GOA
 GOB
 GOD
@@ -4982,7 +4877,6 @@ GUL
 GUM
 GUN
 GUT
-GUV
 GUY
 GYM
 GYP
@@ -5001,7 +4895,6 @@ HAY
 HEH
 HEM
 HEN
-HEP
 HER
 HES
 HET
@@ -5034,7 +4927,6 @@ HUM
 HUN
 HUP
 HUT
-HYP
 ICE
 ICH
 ICK
@@ -5243,7 +5135,6 @@ OBA
 OBE
 OBI
 OCA
-ODA
 ODD
 ODE
 ODS
@@ -5309,7 +5200,6 @@ PES
 PET
 PEW
 PHI
-PHT
 PIA
 PIC
 PIE
@@ -5595,7 +5485,6 @@ WOT
 WOW
 WRY
 WUD
-WYE
 WYN
 XIS
 YAG
