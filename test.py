@@ -117,7 +117,7 @@ def process_batch(batch_num, batch, confirmed_free_names, webhook_url, request_d
         print(f"❌ Batch {batch_num} did not return 500.")
 
 def main():
-    input_file = "chcene.txt"
+    input_file = "testsada.txt"
     all_usernames = read_usernames_from_file(input_file)
     webhook_url = os.getenv("DISCORD_WEBHOOK_URL")
 
