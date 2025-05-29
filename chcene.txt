@@ -1,4 +1,3 @@
-haunt
 scene
 bpm
 arrow
@@ -36,7 +35,6 @@ road
 traffic
 sushi
 tile
-Tile
 tree
 pole
 react
