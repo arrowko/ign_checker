@@ -2,33 +2,50 @@ import os
 import time
 import requests
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from threading import Lock
 
 # Set webhook URLs as environment variables
-os.environ["DISCORD_FINAL_WEBHOOK_URL"] = "https://discord.com/api/webhooks/1376640623297433671/s_W7LeSd-v9B-FWVD5GEHUArryJUy24T0ZCg4buAv3DbuQo60Rd7Ss9wks_osEzd8gO1"
-os.environ["DISCORD_WEBHOOK_URL"] = "https://discord.com/api/webhooks/1373286716504277002/3a8I20YEVadrZXGK_W3AcPB4v01d5walWIIySGwl6Xf-rdnpTm52XKNE3sr7HmfOY6OF"
+os.environ["DISCORD_FINAL_WEBHOOK_URL"] = "your_final_webhook_here"
+os.environ["DISCORD_WEBHOOK_URL"] = "your_webhook_here"
+
+lock = Lock()
+request_counter = 0
 
 def read_usernames_from_file(filename):
     with open(filename, "r", encoding="utf-8") as f:
         return [line.strip() for line in f if line.strip()]
+
+def increment_request_count():
+    global request_counter
+    with lock:
+        request_counter += 1
+        if request_counter % 99 == 0:
+            print("⏱️ Reached 99 requests, waiting 1 minute...")
+            time.sleep(60)
+        return request_counter
 
 def check_batch_usernames(usernames_batch):
     joined_names = ",".join(usernames_batch)
     url = f"https://api-cops.criticalforce.fi/api/public/profile?usernames={joined_names}"
     try:
         response = requests.get(url, timeout=5)
-        print(f"🌐 Batch response ({len(usernames_batch)} usernames): {response.status_code}")
+        print(f"🌐 Batch response ({len(usernames_batch)}): {response.status_code}")
+        increment_request_count()
         return response.status_code == 500
     except requests.RequestException as e:
         print(f"❌ Batch request error: {e}")
+        increment_request_count()
         return False
 
 def check_username_individually(username):
     url = f"https://api-cops.criticalforce.fi/api/public/profile?usernames={username}"
     try:
         response = requests.get(url, timeout=5)
+        increment_request_count()
         print(f"🔍 Checking {username} -> Status: {response.status_code}")
         return username if response.status_code == 500 else None
     except requests.RequestException:
+        increment_request_count()
         return None
 
 def send_discord_notification(free_names, webhook_url, batch_number):
@@ -47,62 +64,34 @@ def send_discord_notification(free_names, webhook_url, batch_number):
     except requests.RequestException as e:
         print(f"❌ Error sending Discord notification: {e}")
 
-def divide_and_conquer(usernames, request_counter, max_workers=10):
-    def recursive_check(name_list):
-        nonlocal request_counter
-        if not name_list:
-            return []
+def divide_and_conquer(usernames):
+    if not usernames:
+        return []
 
-        if len(name_list) == 1:
-            result = check_username_individually(name_list[0])
-            request_counter += 1
-            print(f"📡 Request #{request_counter}")
-            if request_counter % 99 == 0:
-                print("⏱️ Reached 99 requests, waiting 1 minute...")
-                time.sleep(60)
-            return [result] if result else []
+    if len(usernames) == 1:
+        result = check_username_individually(usernames[0])
+        return [result] if result else []
 
-        if check_batch_usernames(name_list):
-            request_counter += 1
-            print(f"📡 Request #{request_counter}")
-            if request_counter % 99 == 0:
-                print("⏱️ Reached 99 requests, waiting 1 minute...")
-                time.sleep(60)
-            mid = len(name_list) // 2
-            return recursive_check(name_list[:mid]) + recursive_check(name_list[mid:])
-        else:
-            request_counter += 1
-            print(f"📡 Request #{request_counter}")
-            if request_counter % 99 == 0:
-                print("⏱️ Reached 99 requests, waiting 1 minute...")
-                time.sleep(60)
-            return []
+    if check_batch_usernames(usernames):
+        mid = len(usernames) // 2
+        return divide_and_conquer(usernames[:mid]) + divide_and_conquer(usernames[mid:])
+    else:
+        return []
 
-    def threaded_check(usernames):
-        nonlocal request_counter
-        confirmed = []
+def threaded_divide_and_conquer(usernames, max_workers=10):
+    confirmed = []
 
-        with ThreadPoolExecutor(max_workers=max_workers) as executor:
-            futures = {executor.submit(check_username_individually, u): u for u in usernames}
-            for future in as_completed(futures):
-                username = futures[future]
-                result = future.result()
-                request_counter += 1
+    def process_chunk(chunk):
+        return divide_and_conquer(chunk)
 
-                if result:
-                    print(f"📡 Request #{request_counter} - ✅ Free: {username}")
-                    confirmed.append(username)
-                else:
-                    print(f"📡 Request #{request_counter} - ❌ Taken: {username}")
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        futures = [executor.submit(process_chunk, [u]) for u in usernames]
+        for future in as_completed(futures):
+            result = future.result()
+            if result:
+                confirmed.extend(result)
 
-                if request_counter % 99 == 0:
-                    print("⏱️ Reached 99 requests, waiting 1 minute...")
-                    time.sleep(60)
-
-        return confirmed
-
-    midlevel = recursive_check(usernames)
-    return threaded_check(midlevel), request_counter
+    return confirmed
 
 def main():
     input_file = "chcene.txt"
@@ -111,28 +100,31 @@ def main():
 
     batch_size = 20
     total = len(all_usernames)
-    request_counter = 0
     confirmed_free_names = []
 
-    for batch_num, start_idx in enumerate(range(0, total, batch_size), start=1):
-        batch = all_usernames[start_idx:start_idx + batch_size]
-        print(f"\n🔍 Checking batch {batch_num} with {len(batch)} usernames: {batch}")
+    with ThreadPoolExecutor(max_workers=5) as executor:
+        futures = []
+        for batch_num, start_idx in enumerate(range(0, total, batch_size), start=1):
+            batch = all_usernames[start_idx:start_idx + batch_size]
 
-        if check_batch_usernames(batch):
-            print(f"✅ Batch {batch_num} returned 500 - running divide and conquer for batch.")
-            confirmed, request_counter = divide_and_conquer(batch, request_counter)
-            if confirmed:
-                confirmed_free_names.extend(confirmed)
-                send_discord_notification(confirmed, webhook_url, batch_num)
-        else:
-            print(f"❌ Batch {batch_num} did not return 500.")
+            def process_batch(batch=batch, batch_num=batch_num):
+                print(f"\n🔍 Checking batch {batch_num} with {len(batch)} usernames: {batch}")
+                if check_batch_usernames(batch):
+                    print(f"✅ Batch {batch_num} returned 500 - processing individually.")
+                    confirmed = threaded_divide_and_conquer(batch)
+                    if confirmed:
+                        send_discord_notification(confirmed, webhook_url, batch_num)
+                    return confirmed
+                else:
+                    print(f"❌ Batch {batch_num} did not return 500.")
+                    return []
 
-        request_counter += 1
-        print(f"📡 Request #{request_counter}")
+            futures.append(executor.submit(process_batch))
 
-        if request_counter % 99 == 0:
-            print("⏱️ Reached 99 requests, waiting 1 minute...\n")
-            time.sleep(60)
+        for future in as_completed(futures):
+            result = future.result()
+            if result:
+                confirmed_free_names.extend(result)
 
     print("\n=== ✅ Summary ===")
     print(f"🟩 Confirmed free usernames: {len(confirmed_free_names)}")
