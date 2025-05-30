@@ -139,8 +139,8 @@ def main_loop():
         print("\n=== ✅ Loop Summary ===")
         print(f"🟩 Free usernames this loop: {len(confirmed_free_names)}")
         print(f"📝 List: {confirmed_free_names}")
-        print("🔁 Restarting loop in 30 seconds...\n")
-        time.sleep(30)  # Adjust delay between full loops as needed
+        print("🔁 Restarting loop in 60 seconds...\n")
+        time.sleep(60)  # Adjust delay between full loops as needed
 
 if __name__ == "__main__":
     main_loop()
