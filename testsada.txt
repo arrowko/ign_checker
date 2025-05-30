@@ -1355,7 +1355,6 @@ Bowl
 Bran
 Brat
 Bred
-Bump
 Bury
 Busy
 Calf
@@ -1565,7 +1564,6 @@ Miss
 Mix
 Mob
 Mock
-Mode
 Mole
 Mom
 Moon
@@ -2409,7 +2407,6 @@ decent
 defend
 dental
 deputy
-devote
 dizzy
 domain
 donkey
@@ -2539,7 +2536,6 @@ demand
 depart
 depend
 desire
-device
 dialed
 digger
 direct
@@ -3098,7 +3094,6 @@ debut
 decay
 defer
 delay
-devil
 diary
 digit
 dirty
