@@ -115,31 +115,32 @@ def process_batch(batch_num, batch, confirmed_free_names, webhook_url, request_d
             print(f"📡 Request #{request_data['count']}")
         print(f"❌ Batch {batch_num} did not return 500.")
 
-def main():
+def main_loop():
     input_file = "testsada.txt"
-    all_usernames = read_usernames_from_file(input_file)
     webhook_url = os.getenv("DISCORD_WEBHOOK_URL")
-
     batch_size = 20
-    total = len(all_usernames)
-    confirmed_free_names = []
-    request_data = {"count": 0}
 
-    with ThreadPoolExecutor(max_workers=10) as executor:
-    with ThreadPoolExecutor(max_workers=5) as executor:
-        futures = []
-        for batch_num, start_idx in enumerate(range(0, total, batch_size), start=1):
-            batch = all_usernames[start_idx:start_idx + batch_size]
-            futures.append(executor.submit(
-                process_batch, batch_num, batch, confirmed_free_names, webhook_url, request_data))
+    while True:
+        all_usernames = read_usernames_from_file(input_file)
+        total = len(all_usernames)
+        confirmed_free_names = []
+        request_data = {"count": 0}
 
-        for future in as_completed(futures):
-            future.result()
+        with ThreadPoolExecutor(max_workers=5) as executor:
+            futures = []
+            for batch_num, start_idx in enumerate(range(0, total, batch_size), start=1):
+                batch = all_usernames[start_idx:start_idx + batch_size]
+                futures.append(executor.submit(
+                    process_batch, batch_num, batch, confirmed_free_names, webhook_url, request_data))
 
-    print("\n=== ✅ Summary ===")
-    print(f"🟩 Confirmed free usernames: {len(confirmed_free_names)}")
-    print(f"📝 Confirmed list: {confirmed_free_names}")
-    print("🎉 Done.")
+            for future in as_completed(futures):
+                future.result()
+
+        print("\n=== ✅ Loop Summary ===")
+        print(f"🟩 Free usernames this loop: {len(confirmed_free_names)}")
+        print(f"📝 List: {confirmed_free_names}")
+        print("🔁 Restarting loop in 30 seconds...\n")
+        time.sleep(30)  # Adjust delay between full loops as needed
 
 if __name__ == "__main__":
-    main()
+    main_loop()
