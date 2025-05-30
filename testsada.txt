@@ -330,7 +330,6 @@ day
 end
 clock
 mclaren
-grinch
 rot
 rotate
 brainrot
