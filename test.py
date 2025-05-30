@@ -1,4 +1,4 @@
-import os
+import osMore actions
 import time
 import threading
 import requests
@@ -115,26 +115,20 @@ def process_batch(batch_num, batch, confirmed_free_names, webhook_url, request_d
             print(f"📡 Request #{request_data['count']}")
         print(f"❌ Batch {batch_num} did not return 500.")
 
-def main(run_duration_hours=1):
+def main():
     input_file = "testsada.txt"
     all_usernames = read_usernames_from_file(input_file)
-    webhook_url = os.getenv("DISCORD_FINAL_WEBHOOK_URL")
+    webhook_url = os.getenv("DISCORD_WEBHOOK_URL")
 
     batch_size = 20
     total = len(all_usernames)
     confirmed_free_names = []
     request_data = {"count": 0}
 
-    start_time = time.time()
-    end_time = start_time + run_duration_hours * 3600
-
+    with ThreadPoolExecutor(max_workers=10) as executor:
     with ThreadPoolExecutor(max_workers=5) as executor:
         futures = []
         for batch_num, start_idx in enumerate(range(0, total, batch_size), start=1):
-            if time.time() > end_time:
-                print(f"\n⏰ Time limit of {run_duration_hours} hours reached. Stopping batch submission.")
-                break
-
             batch = all_usernames[start_idx:start_idx + batch_size]
             futures.append(executor.submit(
                 process_batch, batch_num, batch, confirmed_free_names, webhook_url, request_data))
