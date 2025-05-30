@@ -125,7 +125,7 @@ def main():
     confirmed_free_names = []
     request_data = {"count": 0}
 
-    with ThreadPoolExecutor(max_workers=10) as executor:
+    with ThreadPoolExecutor(max_workers=5) as executor:
         futures = []
         for batch_num, start_idx in enumerate(range(0, total, batch_size), start=1):
             batch = all_usernames[start_idx:start_idx + batch_size]
