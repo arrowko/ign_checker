@@ -696,7 +696,6 @@ Kiwi
 Lore
 Never
 Oval
-Opal
 Pinch
 Pick
 Pistol
@@ -768,7 +767,6 @@ Scar
 Path
 Stalk
 Float
-Sink
 Wire
 Sight
 Gaze
@@ -1697,7 +1695,6 @@ Tax
 Ten
 The
 Their
-Theory
 There
 Third
 Those
@@ -2132,7 +2129,6 @@ from
 front
 garden
 general
-generation
 glass
 government
 great
@@ -2229,7 +2225,6 @@ notice
 number
 occur
 officer
-official
 often
 onto
 operation
@@ -2300,7 +2295,6 @@ role
 scientist
 season
 section
-security
 senior
 series
 serious
@@ -2484,7 +2478,6 @@ casino
 castle
 cattle
 caught
-chorus
 circle
 civic
 closer
@@ -2871,7 +2864,6 @@ submit
 subtle
 subway
 summit
-survey
 symbol
 syntax
 tablet
@@ -2943,7 +2935,6 @@ brick
 bride
 brief
 brown
-cabin
 cable
 camel
 candy
@@ -3680,7 +3671,6 @@ NEE
 NEG
 NIB
 NIM
-NIP
 NIT
 NIX
 NOB
@@ -3761,7 +3751,6 @@ PST
 PUD
 PUL
 PUP
-PUR
 PUS
 PYA
 PYE
@@ -3882,7 +3871,6 @@ UDO
 UGH
 UKE
 ULU
-UMM
 UMP
 UNS
 UPO
@@ -3899,7 +3887,6 @@ VAR
 VAS
 VAT
 VAU
-VAV
 VAW
 VEE
 VEG
