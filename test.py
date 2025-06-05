@@ -36,7 +36,7 @@ def check_username_individually(username):
 def send_discord_notification(free_names, webhook_url, batch_number):
     if not free_names or not webhook_url:
         return
-    message = f"**🚨 @everyone Free Usernames Found (Batch {batch_number})!**\n" + "\n".join(f"- {name}" for name in free_names)
+    message = f"**🚨 Free Usernames Found (Batch {batch_number})!**\n" + "\n".join(f"- {name}" for name in free_names)
     payload = {"content": message}
     try:
         response = requests.post(webhook_url, json=payload)
