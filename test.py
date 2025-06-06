@@ -1,4 +1,4 @@
-import os
+import osMore actions
 import time
 import threading
 import requests
@@ -36,6 +36,7 @@ def check_username_individually(username):
 def send_discord_notification(free_names, webhook_url, batch_number):
     if not free_names or not webhook_url:
         return
+    message = f"**🚨 @everyone Free Usernames Found (Batch {batch_number})!**\n" + "\n".join(f"- {name}" for name in free_names)
     message = f"**🚨 Free Usernames Found (Batch {batch_number})!**\n" + "\n".join(f"- {name}" for name in free_names)
     payload = {"content": message}
     try:
@@ -47,11 +48,11 @@ def send_discord_notification(free_names, webhook_url, batch_number):
     except requests.RequestException as e:
         print(f"❌ Error sending Discord notification: {e}")
 
-def divide_and_conquer(usernames, request_data, max_workers=3):
+def divide_and_conquer(usernames, request_data, max_workers=10):
     def increment_and_check():
         with lock:
             request_data["count"] += 1
-            if request_data["count"] % 200 == 0:
+            if request_data["count"] % 95 == 0:
                 print("⏱️ Reached 95 requests, waiting 1 minute...")
                 time.sleep(60)
             print(f"📡 Request #{request_data['count']}")
@@ -96,7 +97,7 @@ def process_batch(batch_num, batch, confirmed_free_names, webhook_url, request_d
     if check_batch_usernames(batch):
         with lock:
             request_data["count"] += 1
-            if request_data["count"] % 200 == 0:
+            if request_data["count"] % 95 == 0:
                 print("⏱️ Reached 95 requests, waiting 1 minute...")
                 time.sleep(60)
             print(f"📡 Request #{request_data['count']}")
@@ -109,7 +110,7 @@ def process_batch(batch_num, batch, confirmed_free_names, webhook_url, request_d
     else:
         with lock:
             request_data["count"] += 1
-            if request_data["count"] % 200 == 0:
+            if request_data["count"] % 95 == 0:
                 print("⏱️ Reached 95 requests, waiting 1 minute...")
                 time.sleep(60)
             print(f"📡 Request #{request_data['count']}")
@@ -126,7 +127,7 @@ def main_loop():
         confirmed_free_names = []
         request_data = {"count": 0}
 
-        with ThreadPoolExecutor(max_workers=3) as executor:
+        with ThreadPoolExecutor(max_workers=5) as executor:
             futures = []
             for batch_num, start_idx in enumerate(range(0, total, batch_size), start=1):
                 batch = all_usernames[start_idx:start_idx + batch_size]
