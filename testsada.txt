@@ -1384,7 +1384,6 @@ Each
 Ease
 East
 Edit
-Elk
 Emu
 Ends
 Epic
@@ -2763,7 +2762,6 @@ picnic
 pierce
 pillar
 pillow
-plenty
 poetry
 poison
 polish
@@ -3396,7 +3394,6 @@ DAK
 DAL
 DAP
 DAW
-DEB
 DEE
 DEF
 DEL
