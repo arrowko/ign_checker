@@ -2422,7 +2422,6 @@ accuse
 acquire
 acrobat
 adapter
-adopted
 airport
 alchemy
 alpine
@@ -2439,7 +2438,6 @@ astral
 attach
 avenge
 axiom
-babble
 backed
 badger
 banner
@@ -2498,7 +2496,6 @@ crusty
 damage
 dancer
 daring
-darted
 deadly
 defeat
 define
@@ -2543,7 +2540,6 @@ fairly
 fallen
 farmer
 faster
-faulty
 feeble
 feline
 fellow
@@ -2801,7 +2797,6 @@ replay
 rescue
 reside
 resist
-resort
 resume
 retail
 retire
@@ -3162,7 +3157,6 @@ bunch
 bunny
 cache
 cadet
-canoe
 canon
 cedar
 cheek
@@ -3529,7 +3523,6 @@ HAW
 HEH
 HEM
 HES
-HET
 HEW
 HEX
 HEY
@@ -3581,7 +3574,6 @@ KAT
 KAY
 KEA
 KEF
-KEG
 KEP
 KEX
 KHI
@@ -3706,7 +3698,6 @@ OPE
 OPS
 ORA
 ORC
-ORS
 ORT
 OSE
 OUD
