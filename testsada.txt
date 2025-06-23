@@ -13,7 +13,6 @@ Shah
 outlaw
 strong
 rough
-progress
 rest
 let
 die
